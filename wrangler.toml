@@ -1,0 +1,18 @@
+name = "pureoe-lab"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-11-07"
+workers_dev = true
+[[d1_databases]]
+binding = "DB"
+database_name = "pureoe-lab-app-db"
+database_id = "d1bdabee-c16e-4b4b-a40b-c5a282eed728"
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "pureoe-lab-assets"
+[[queues.producers]]
+binding = "EVENTS"
+queue = "pureoe-lab-events"
+[[queues.consumers]]
+queue = "pureoe-lab-events"
+max_batch_size = 10
+max_retries = 5
