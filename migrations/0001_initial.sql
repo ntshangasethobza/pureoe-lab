@@ -52,3 +52,13 @@ INSERT INTO rank_config(rank,name,level_rates,level1_target_cents,combined_targe
  (2,'Builder','{"1":20,"2":10}',600000,1200000,120000),
  (3,'Leader','{"1":20,"2":10,"3":5}',600000,1200000,0);
 INSERT INTO app_settings(key,value) VALUES('platform','{"orders_enabled":false,"commissions_enabled":false,"withdrawals_enabled":false,"inventory_tracking":false,"monthly_activation_enabled":false,"currency":"ZAR","environment":"staging","eft_instructions":""}');
+
+INSERT INTO products(sku,name,description,price_cents,stock,active) VALUES
+ ('DR-VCT','Vitamin C Brightening & Anti-Aging Essence Toner','Product and supplier details awaiting verification.',20000,0,0),
+ ('DR-SPF50','SPF PA+ 50 Vitamin C Sunscreen','Product and supplier details awaiting verification.',20000,0,0),
+ ('DR-VCC','Vitamin C Facial Cleanser','Product and supplier details awaiting verification.',20000,0,0),
+ ('DR-VCN','Vitamin C Night Cream','Product and supplier details awaiting verification.',20000,0,0),
+ ('DR-VCD','Vitamin C Day Cream','Product and supplier details awaiting verification.',20000,0,0),
+ ('GM-TCM','Guanjing Turmeric Clay Mask','Product and supplier details awaiting verification.',20000,0,0),
+ ('DM-VCS','Dr Meinaier Vitamin C Serum','Product and supplier details awaiting verification.',20000,0,0),
+ ('CD-HBT','Crazy Dragon Herbal Tea','Product and supplier details awaiting verification.',20000,0,0);
