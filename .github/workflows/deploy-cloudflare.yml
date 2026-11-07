@@ -1,22 +1,30 @@
-name: Deploy Pureoe Lab to Cloudflare
+name: Validate and deploy Pureoe Lab Cloudflare build
 on:
   push:
     branches: [cloudflare-native]
   workflow_dispatch:
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+      - run: node --check src/worker.js
       - run: npm install
-      - name: Deploy Worker and assets
-        run: npx wrangler deploy
+      - run: npx wrangler --version
+  deploy:
+    if: ${{ vars.CLOUDFLARE_DEPLOY_ENABLED == 'true' }}
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
