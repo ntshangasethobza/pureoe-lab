@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pureoe-lab",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-07",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "pureoe-lab", "database_id": "REPLACE_WITH_D1_DATABASE_ID", "migrations_dir": "migrations" }
+  ],
+  "r2_buckets": [
+    { "binding": "PRODUCTS", "bucket_name": "pureoe-lab-products" }
+  ],
+  "queues": {
+    "producers": [{ "binding": "EVENTS", "queue": "pureoe-lab-events" }],
+    "consumers": [{ "queue": "pureoe-lab-events", "max_batch_size": 10, "max_batch_timeout": 5, "max_retries": 5 }]
+  },
+  "triggers": { "crons": ["0 1 * * *"] },
+  "vars": { "CURRENCY": "ZAR", "PLATFORM_ENV": "staging" }
+}
